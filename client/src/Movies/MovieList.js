@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {NavLink, useParams} from 'react-router-dom';
+// import MovieDetails from './MovieDetails';
+
+
 
 const MovieList = props => {
   const [movies, setMovies] = useState([])
@@ -27,10 +31,13 @@ const MovieList = props => {
   );
 }
 
-function MovieDetails({ movie }) {
-  const { title, director, metascore, stars } = movie;
+
+function MovieDetails({movie}) {
+  // const { id } = useParams();
+  const { title, director, metascore, stars, id } = movie;
   return (
     <div className="movie-card">
+      <NavLink to={`/movies/${id}`}>
       <h2>{title}</h2>
       <div className="movie-director">
         Director: <em>{director}</em>
@@ -45,8 +52,11 @@ function MovieDetails({ movie }) {
           {star}
         </div>
       ))}
+      </NavLink>
     </div>
   );
 }
 
-export default MovieList;
+
+  export default MovieList;
+
